@@ -1,0 +1,49 @@
+to comments
+; n    vertices     edges
+; 0    1            0
+; 1    2            1
+; 2    4            4
+; 3    8           12
+; 4   16           32
+; 5   32           80
+; 6   64          192
+end
+
+to cuben :n :a
+if :n<2 [stop]
+
+queue "lines :n   
+if :a=1 [repeat 2 [queue "lines :n+2 queue "lines :n+1]]
+
+cuben :n-2 0
+
+queue "lines :n-1 
+
+cuben :n-2 0
+
+if :a=1 [repeat 2 [queue "lines :n+2 queue "lines :n+1]]
+queue "lines :n 
+if :a=1 [repeat 2 [queue "lines :n+2 queue "lines :n+1]]
+
+cuben :n-2 0
+
+queue "lines :n-1 
+cuben :n-2 1 
+end
+
+to ncube :n
+make "lines []
+cuben :n 0
+show :lines
+make "count 0
+while [not :lines=[] ] [type dequeue "lines make "count :count+1 ]
+show :count
+end
+
+Make ":lines [4 2 1 2 1 3 2 1 2 1 4 2 1 2 1 3 2 4 3 4 3 1 4 3 4 3 2 4 3 4 3 1]
+Make "count 144
+Make "lines []
+Make "list []
+Make "list2 []
+Make "temp [3 1 2 1 2 5 6 5 6 4 5 6 5 6 1 2 1 2 3 1 2 1 2 5 6 5 6 4]
+Make "temp2 [1 3 4 3 4 2 3 4 3 4 1 3 4 3 4 2 3 1 2 1 2 4 1 2 1 2 3 1 2 1 2 4]
