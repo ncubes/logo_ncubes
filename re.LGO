@@ -1,0 +1,9 @@
+to re :n
+if :n<0 [stop]
+if :n>10 [stop]
+re :n-1
+re :n+1
+show :n
+end
+
+Make "n 0
