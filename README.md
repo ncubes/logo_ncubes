@@ -12,3 +12,6 @@ Each uses the concept of a walk around the verticies of an ncube with no retrace
 create art, such as music via midi files, or visual art.
 
 Try some, create some!
+
+This collection is now only the ncube related files.  The demo programs that are part of
+MSWlogo have been deleted from this repo.
