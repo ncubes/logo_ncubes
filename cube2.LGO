@@ -1,0 +1,34 @@
+to cubed :n
+setpencolor :n
+setheading :n*45
+fd :n*8
+end
+
+to cuben :n
+if :n=0 [stop]
+cubed :n
+cuben :n-2
+cubed :n-1
+cuben :n-2
+cubed :n*-1
+cuben :n-2
+cubed (:n-1)*-1
+cubex :n-2 :n
+end
+
+to cubex :n :m
+if :n=0 [stop]
+cubed :n
+cubex :n-2 :m
+if :n=2 [cubed :m cubed :m-1 cubed :m*-1 cubed (:m-1)*-1]
+cubed :n-1
+if :n=2 [cubed :m cubed :m-1 cubed :m*-1 cubed (:m-1)*-1]
+cubex :n-2 :m
+cubed :n*-1
+if :n=2 [cubed :m cubed :m-1 cubed :m*-1 cubed (:m-1)*-1]
+cubex :n-2 :m
+cubed (:n-1)*-1
+cubex :n-2 :n
+end
+
+Make "a 5

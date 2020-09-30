@@ -1,0 +1,68 @@
+to cube :l :m
+
+make "l1 :l
+make "llist []
+
+queue "llist :m
+while [not :l1=[]] [queue "llist dequeue "l1]
+make "l1 :l
+
+queue "llist :m-1
+while [not :l1=[]] [queue "llist dequeue "l1]
+make "l1 :l
+
+queue "llist :m
+while [not :l1=[]] [queue "llist dequeue "l1]
+make "l1 :l
+
+queue "llist :m-1
+queue "llist dequeue "l1
+repeat 2 [queue "llist :m queue "llist :m-1 ]
+
+while [ not :l1=[] ] [
+ make "x dequeue "l1 
+ if :x=:m-2 
+  [ repeat 2 [ queue "llist :m queue "llist :m-1 ] 
+    queue "llist :x 
+    repeat 2 [ queue "llist :m queue "llist :m-1]] 
+ if not  :x=:m-2 [ queue "llist :x]]
+
+end
+
+to ncube :k
+show midiopen
+
+
+; make a hypercube of dimension 2, or 4, or 6, or 8,...
+; walk the hypercube edges with NO retrace and NO pen lift!
+; can you do this on ONE pass?  I can't!
+
+make "k :k-2               ; subtract off the dimension of a square
+if :k<0 [stop]             ; check the parameter to be legal
+make "llist [2 1 2 1]      ; the line list for a square
+make "d 2                  ; number of dimensions in a square
+while [ not :k<2] [ make "d :d+2 make "k :k-2 cube :llist :d ] ; increase dimension by two...
+
+; show and count the line list
+make "count 0
+make "song :llist
+while [not :llist=[]][type dequeue "llist make "count :count+1]
+show "count
+show :count
+; while [not :song=[]][sound list round product 1000 power 2 (dequeue "song)/6 30]
+while [not :song=[]][wait ((modulo (dequeue "song) 4) * 4) midimessage (list 144 (194 + modulo (dequeue "song) + (dequeue "song)70)  127)  ]
+midiclose
+End
+
+Make "a 1000
+Make "b 2000
+Make "count 24576
+Make "d 12
+Make "l [2 1 2 1]
+Make "l1 []
+Make "l2 [8 6 4 2 1 2 1 3 2 1 2 1 4 2 1 2 1 3 2 4 3 4 3 1 4 3 4 3 2 4 3 4 3 1 5 4 2 1 2 1 3 2 1 2 1 4 2 1 2 1 3 2 4 3 4 3 1 4 3 4 3 2 4 3 4 3 1 6 4 2 1 2 1 3 2 1 2 1 4 2 1 2 1 3 2 4 3 4 3 1 4 3 4 3 2 4 3 4 3 1 5 4 6 5 6 5 2 1 2 1 3 2 1 2 1 6 5 6 5 4 6 5 6 5 2 1 2 1 3 2 6 5 6 5 4 6 5 6 5 3 6 5 6 5 4 6 5 6 5 3 1 6 5 6 5 4 6 5 6 5 3 6 5 6 5 4 6 5 6 5 3 2 6 5 6 5 4 6 5 6 5 3 6 5 6 5 4 6 5 6 5 3 1 7 6 4 2 1 2 1 3 2 1 2 1 4 2 1 2 1 3 2 4 3 4 3 1 4 3 4 3 2 4 3 4 3 1 5 4 2 1 2 1 3 2 1 2 1 4 2 1 2 1 3 2 4 3 4 3 1 4 3 4 3 2 4 3 4 3 1 6 4 2 1 2 1 3 2 1 2 1 4 2 1 2 1 3 2 4 3 4 3 1 4 3 4 3 2 4 3 4 3 1 5 4 6 5 6 5 2 1 2 1 3 2 1 2 1 6 5 6 5 4 6 5 6 5 2 1 2 1 3 2 6 5 6 5 4 6 5 6 5 3 6 5 6 5 4 6 5 6 5 3 1 6 5 6 5 4 6 5 6 5 3 6 5 6 5 4 6 5 6 5 3 2 6 5 6 5 4 6 5 6 5 3 6 5 6 5 4 6 5 6 5 3 1 8 6 4 2 1 2 1 3 2 1 2 1 4 2 1 2 1 3 2 4 3 4 3 1 4 3 4 3 2 4 3 4 3 1 5 4 2 1 2 1 3 2 1 2 1 4 2 1 2 1 3 2 4 3 4 3 1 4 3 4 3 2 4 3 4 3 1 6 4 2 1 2 1 3 2 1 2 1 4 2 1 2 1 3 2 4 3 4 3 1 4 3 4 3 2 4 3 4 3 1 5 4 6 5 6 5 2 1 2 1 3 2 1 2 1 6 5 6 5 4 6 5 6 5 2 1 2 1 3 2 6 5 6 5 4 6 5 6 5 3 6 5 6 5 4 6 5 6 5 3 1 6 5 6 5 4 6 5 6 5 3 6 5 6 5 4 6 5 6 5 3 2 6 5 6 5 4 6 5 6 5 3 6 5 6 5 4 6 5 6 5 3 1 7 6 8 7 8 7 4 2 1 2 1 3 2 1 2 1 4 2 1 2 1 3 2 4 3 4 3 1 4 3 4 3 2 4 3 4 3 1 5 4 2 1 2 1 3 2 1 2 1 4 2 1 2 1 3 2 4 3 4 3 1 4 3 4 3 2 4 3 4 3 1 8 7 8 7 6 8 7 8 7 4 2 1 2 1 3 2 1 2 1 4 2 1 2 1 3 2 4 3 4 3 1 4 3 4 3 2 4 3 4 3 1 5 4 8 7 8 7 6 8 7 8 7 5 8 7 8 7 6 8 7 8 7 5 2 1 2 1 3 2 1 2 1 8 7 8 7 6 8 7 8 7 5 8 7 8 7 6 8 7 8 7 5 4 8 7 8 7 6 8 7 8 7 5 8 7 8 7 6 8 7 8 7 5 2 1 2 1 3 2 8 7 8 7 6 8 7 8 7 5 8 7 8 7 6 8 7 8 7 5 4 8 7 8 7 6 8 7 8 7 5 8 7 8 7 6 8 7 8 7 5 3 8 7 8 7 6 8 7 8 7 5 8 7 8 7 6 8 7 8 7 5 4 8 7 8 7 6 8 7 8 7 5 8 7 8 7 6 8 7 8 7 5 3 1 8 7 8 7 6 8 7 8 7 5 8 7 8 7 6 8 7 8 7 5 4 8 7 8 7 6 8 7 8 7 5 8 7 8 7 6 8 7 8 7 5 3 8 7 8 7 6 8 7 8 7 5 8 7 8 7 6 8 7 8 7 5 4 8 7 8 7 6 8 7 8 7 5 8 7 8 7 6 8 7 8 7 5 3 2 8 7 8 7 6 8 7 8 7 5 8 7 8 7 6 8 7 8 7 5 4 8 7 8 7 6 8 7 8 7 5 8 7 8 7 6 8 7 8 7 5 3 8 7 8 7 6 8 7 8 7 5 8 7 8 7 6 8 7 8 7 5 4 8 7 8 7 6 8 7 8 7 5 8 7 8 7 6 8 7 8 7 5 3 1]
+Make "list []
+Make "llist []
+Make "oldn 1
+Make "song []
+Make "x 1
