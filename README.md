@@ -15,3 +15,7 @@ Try some, create some!
 
 This collection is now only the ncube related files.  The demo programs that are part of
 MSWlogo have been deleted from this repo.
+
+Issue: mswlogo help files do not work.  This can be fixed.  It is a usoft issue.
+If you research you will find that you can augment your windows system to make it work.
+I have done this on Windows 10 and 11.  You can too.
