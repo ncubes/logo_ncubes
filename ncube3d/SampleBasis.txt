@@ -1,0 +1,39 @@
+Length of a side in the scale frame of logo: 800/sqrt(8) = 282.842712474619
+
+
+Starting point in three space:
+{-141.421356237309 -141.421356237309 -141.421356237309}
+
+Basis vectors: x,y,z,w,v,u,t,s
+
+stuvw xyz
+
+Sequence for this rotation in logo: 232242522627228
+
+This seems to give the most symetric presentation in 8 space.
+
+{{70.7106781186548 -70.7106781186547 -141.421356237309 141.421356237309 141.421356237309 6.0291550413457e-14 -70.7106781186547 -70.7106781186548} 
+{70.7106781186547 70.7106781186548 -141.421356237309 -141.421356237309 -2.00971834711523e-14 141.421356237309 70.7106781186548 -70.7106781186547}
+ {100 7.105427357601e-14 200 -2.00971834711523e-14 100 100 5.02429586778808e-14 -100} 
+{-4.01943669423046e-14 100 0 200 -100 99.9999999999999 100 4.01943669423046e-14}
+ {-100 100 0 0 200 -2.00971834711523e-14 100 100} {-99.9999999999999 -100 0 0 0 200 -100 99.9999999999999} 
+{2.00971834711523e-14 -200 0 0 0 0 200 -2.00971834711523e-14}
+ {200 0 0 0 0 0 0 200}}
+
+These are the basis vectors after rotating in from 8-space.
+Only the x,y, and z will be used.
+
+The remaining are not needed.
+
+The operation will procede as follows:
+
+
+I will be the appropriate one of the eight basis vectors (an even number are needed!)
+It will be scaled in the z dimension only per the basis vector.
+It will be rotated per the cross product with the basis vector.
+It will be translated to the starting point in three space, after said starting point is scaled appropriately.
+
+
+
+The second brick will be treated in the same manner, but translated to the end point of the previous brick.
+So the bricks will have some overlap and will form a closed structure.
