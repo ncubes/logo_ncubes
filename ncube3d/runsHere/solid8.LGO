@@ -91,8 +91,7 @@ end
 
 to filecube :scadlist
 type "\[ 
-foreach butlast arraytolist :scadlist [type (se ? ",)]
-foreach last    arraytolist :scadlist [type (se ?   )]
+foreach arraytolist :scadlist [type (se ? ",)]
 type "\],
 end
 
