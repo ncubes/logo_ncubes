@@ -1,0 +1,42 @@
+Loaded design 'C:/Users/JohnLawWinters/Documents/ncubes/logo_ncubes/ncube3d/runsHere/sticksx.scad'.
+Compiling design (CSG Tree generation)...
+Compiling design (CSG Products generation)...
+Geometries in cache: 1
+Geometry cache size in bytes: 1016
+CGAL Polyhedrons in cache: 0
+CGAL cache size in bytes: 0
+Compiling design (CSG Products normalization)...
+Normalized tree has 5120 elements!
+Compile and preview finished.
+Total rendering time: 0:00:00.548
+ 
+Parsing design (AST generation)...
+Compiling design (CSG Tree generation)...
+Rendering Polygon Mesh using CGAL...
+Geometries in cache: 5151
+Geometry cache size in bytes: 5233416
+CGAL Polyhedrons in cache: 0
+CGAL cache size in bytes: 0
+Total rendering time: 2:02:30.857
+   Top level object is a 3D object:
+   Simple:        yes
+   Vertices:   234286
+   Halfedges:  709964
+   Edges:      354982
+   Halffacets: 216328
+   Facets:     108164
+   Volumes:         2
+Rendering finished.
+STL export finished: C:/Users/JohnLawWinters/Documents/ncubes/logo_ncubes/ncube3d/runsHere/may23.stl
+Saved design 'C:/Users/JohnLawWinters/Documents/ncubes/logo_ncubes/ncube3d/runsHere/sticksx.scad'.
+Loaded design 'C:/Users/JohnLawWinters/Documents/ncubes/logo_ncubes/ncube3d/runsHere/sticksx.scad'.
+Compiling design (CSG Tree generation)...
+Compiling design (CSG Products generation)...
+Geometries in cache: 5151
+Geometry cache size in bytes: 5233416
+CGAL Polyhedrons in cache: 0
+CGAL cache size in bytes: 0
+Compiling design (CSG Products normalization)...
+Normalized tree has 5120 elements!
+Compile and preview finished.
+Total rendering time: 0:00:00.677
