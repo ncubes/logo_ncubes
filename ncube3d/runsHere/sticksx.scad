@@ -5,7 +5,7 @@ extruding a cube of side s oriented towards its target
 
 include <cube.scad>;
 
-$fn =3;s =1 ;
+$fn =3;s =.15 ;f=s;
 CubePoints = [
   [  -.5 * s, -.5 * s, -.5 * s ],  //0
   [   .5 * s, -.5 * s, -.5 * s ],  //1
@@ -29,5 +29,5 @@ for (i = [0 : 1 : len(w)-2])
         translate((w[i]+w[i+1])/2)
             rotate([0,acos(((w[i+1]-w[i])[2])/(norm(w[i]-w[i+1]))),
                       atan2(((w[i+1]-w[i])[1]),((w[i+1]-w[i])[0]))])
-                scale(v = [1,1,norm(w[i]-w[i+1])/s])
+                scale(v = [1,1,(norm(w[i]-w[i+1])+f)/s])
                     polyhedron( CubePoints, CubeFaces );
