@@ -4,11 +4,11 @@ make "timeClear 0
 make "oldkey 0
 make "append "False
 make "inputKey 0
-make "n 10  
+make "n 6  
 make "theta 180/:n
 make "costheta cos :theta
 make "sintheta sin :theta
-make "len 800 / SQRT :n
+make "len 1000 / SQRT :n
 ncube :n    
 genbasis :n  
 getkeys      
