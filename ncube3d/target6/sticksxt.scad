@@ -5,7 +5,7 @@ extruding a cube of side s oriented towards its target
 
 include <cube.scad>;
 
-$fn =3;s =5;f=-.4*s;r=.2;coloring = 400;trans = .1;
+$fn =3;s =500*$t;f=-.4*s;r=.2;coloring = 400;trans = .1;
 
 CubePoints = [
   [  -.5 * s, -.5 * s, -.5 * s ],  //0
@@ -25,7 +25,7 @@ CubeFaces = [
   [6,7,3,2],  // back
   [7,4,0,3]]; // left
 
-for (i = [0 : 1 : (($t*1001) % (len(w)-2))])
+for (i = [0 : 1 : (($t*1001) % (len(w)-1))])
     scale(v = [r,r,r])
         if (norm(w[i]-w[i+1]) > 0) 
             translate((w[i]+w[i+1])/2)
