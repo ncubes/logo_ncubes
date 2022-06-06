@@ -5,7 +5,7 @@ extruding a cube of side s oriented towards its target
 
 include <cube.scad>;
 
-$fn =3;s =500*$t;f=-.4*s;r=.2;coloring = 400;trans = .1;
+$fn =3;s =100*$t;f=-.4*s;r=.2;coloring = 400;
 
 CubePoints = [
   [  -.5 * s, -.5 * s, -.5 * s ],  //0
