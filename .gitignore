@@ -3,3 +3,9 @@
 *.mix
 ncube3d/target6/frame00186.png
 *.png
+*.log
+*.raw
+*.wav
+*.mp3
+waves/scale.aup3
+*.aup3

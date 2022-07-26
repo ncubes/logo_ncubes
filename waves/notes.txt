@@ -1,0 +1,10 @@
+scale is based on mostly overtone series of C = 512 (scientific pitch standard).
+F or fa is based on the non-integer 4/3, not in the overtone series.
+Try muting tracks as it plays to get chords you might recognize.
+
+IMPORTANT:
+
+reduce all notes to -30db.
+Reduce do and do2 (both C notes) to -36db
+
+Otherwise, you get a bad clipping.
