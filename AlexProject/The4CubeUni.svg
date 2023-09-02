@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="5119.3093757401"
+   height="5119.3093757401"
+   version="1.1"
+   id="svg4"
+   sodipodi:docname="The4CubeUni.svg"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
+  <metadata
+     id="metadata10">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs8" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1057"
+     id="namedview6"
+     showgrid="false"
+     inkscape:zoom="0.17385157"
+     inkscape:cx="2559.6548"
+     inkscape:cy="2263.1962"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg4" />
+  <polyline
+     points=" 3583.65468787005 87.5 1535.65468787005 87.5000000000005 1535.65468787005 2135.5 2983.8093757401 3583.65468787005 2983.8093757401 1535.65468787005 1535.65468787005 87.5000000000005 87.5 1535.65468787005 87.5 3583.65468787005 1535.65468787005 5031.8093757401 1535.65468787005 2983.8093757401 87.5 1535.65468787005 2135.5 1535.65468787005 2135.5 3583.65468787005 3583.65468787005 5031.8093757401 3583.65468787005 2983.8093757401 2135.5 1535.65468787005 3583.65468787005 87.5000000000009 3583.65468787005 2135.5 1535.65468787005 2135.5 87.5 3583.65468787005 2135.5 3583.65468787005 3583.65468787005 2135.5 5031.8093757401 3583.65468787005 2983.8093757401 3583.65468787005 1535.65468787005 5031.8093757401 3583.65468787005 5031.8093757401 5031.8093757401 3583.65468787005 5031.8093757401 1535.65468787005 2983.8093757401 1535.65468787005 1535.65468787005 2983.8093757401 3583.65468787005 2983.8093757401 5031.8093757401 1535.65468787005 3583.65468787005 87.5000000000009 "
+     stroke="green"
+     fill="transparent"
+     stroke-width=".002"
+     id="polyline2"
+     style="fill-rule:evenodd;fill:#f97b00;fill-opacity:0.50602412;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-linejoin:round;stroke-linecap:round;stroke:#008000;stroke-opacity:0.50200802" />
+</svg>
