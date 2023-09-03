@@ -1,14 +1,16 @@
 to aaa
 make "append "False
-make "n 10
-make "odd 0
-make "s 538
-make "marginPixels 10
-show :s
-show :n
-make "p :n
-ncube :n
-design :n :p :s 
+make "n 2
+make "Width 914
+for [n 2 10 2][~
+      make "odd :n - (2 * (int (:n / 2)))
+      make "s (:Width * PI) / (2 * :n)
+      make "aperture (1 / (2 * :n))
+      show :s
+      show :n
+      make "p :n
+      ncube :n
+      design :n :p :s] 
 end
 
 to cube :l :p
@@ -37,22 +39,22 @@ end
 
 to design :n :p :s
 make "theta 180/(:n - :odd)
-genbasis :n :s    ; genbasis has a side-effect of calculating the CanvasPixels.. from s
-make "CanvasPixels :CanvasPixels + :marginPixels
-make "user_center :CanvasPixels  / 2.0
-type [paper square side size inches:  ]
-print :CanvasPixels / 350
+genbasis :n :s   
+make "user_center :Width  / 2.0
 draw
 end
 
 to draw
-make "fname "TheCubeUni.GBR
+make "fname COMBINE "TheCube :n
+make "fname COMBINE  :fname ".GBR
 (openwrite :fname "True)
 setwrite :fname
 print [%MOMM*%]
 print [%FSLAX26Y26*%]
 print [%LPD*%]
-print [%ADD10C,1*%]
+type  [%ADD10C,]
+type  :aperture
+print [*%]
 print [D10*]
 
 
@@ -66,9 +68,9 @@ for [i 1 2 1] [~
   make "temp :temp + mditem :index :basis ]
  setitem :i :CurrentPosition (- :temp / 2) ]
 type [X]
-type (:user_center + item 1 :CurrentPosition)
+type int ((1000000 * (:user_center + item 1 :CurrentPosition)) + 0.5)
 type [Y]
-type (:user_center + item 2 :CurrentPosition)
+type int ((1000000 * (:user_center + item 2 :CurrentPosition)) + 0.5)
 print [D02*]
 print [G01*]
 make "ll :llist
@@ -86,9 +88,9 @@ while [ not :ll = [] ] [~
   setitem  :i :CurrentPosition (:Current + ( :direction * :delta )) ]
  if :itskip = 0 [~
    type [X]
-   type (:user_center + item 1 :CurrentPosition)
+   type int ((1000000 * (:user_center + item 1 :CurrentPosition)) + 0.5)
    type [Y]
-   type (:user_center + item 2 :CurrentPosition)
+   type int ((1000000 * (:user_center + item 2 :CurrentPosition)) + 0.5)
    print [D01*]]
 ]
 print [M02*]
@@ -105,13 +107,6 @@ for [i 1 :n 1] [mdsetitem (list :i 2) :basis  :s * sin (:i * :theta)]
 if :odd = 1 [~
 mdsetitem (list :n 1) :basis  0
 mdsetitem (list :n 2) :basis  0]
-make "CanvasPixels 0
-for [i 1 :n 1] [make "CanvasPixels :CanvasPixels + abs mditem (list :i 1) :basis]
-type [CanvasPixels is ]
-print :CanvasPixels
-type [At 350 pixels per inch, CanvasInches is]
-make "CanvasInches :canvasPixels / 350
-print :CanvasInches
 end
 
 to ncube :k
