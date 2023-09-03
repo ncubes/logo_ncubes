@@ -100,7 +100,7 @@ while [ not :ll = [] ] [~
      make "apeture :newApeture
      type [%LS]
      type :scaleFactor
-     print [*]]
+     print [*%]]
    type [X]
    type int ((1000000 * (:user_center + item 1 :CurrentPosition)) + 0.5)
    type [Y]
