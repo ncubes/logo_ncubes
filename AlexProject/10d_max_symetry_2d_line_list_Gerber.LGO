@@ -1,6 +1,4 @@
 to aaa
-make "append "False
-make "n 2
 make "Width 914
 for [n 2 10 2][~
       make "odd :n - (2 * (int (:n / 2)))
