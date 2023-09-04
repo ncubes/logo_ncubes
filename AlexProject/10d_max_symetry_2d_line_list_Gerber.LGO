@@ -4,6 +4,8 @@ for [n 2 10 2][~
       make "odd :n - (2 * (int (:n / 2)))
       make "s (:Width * PI) / (2 * :n)
       make "apeture (10 / (2 * :n))
+      make "exponent 6
+      make "EdgeScaleUp 50
       show :s
       show :n
       make "p :n
@@ -102,14 +104,15 @@ while [ not :ll = [] ] [~
     if :min12 > :distance0 [~
      make "centerDistance :min12] ; which gives the actual distance from the center to the closest point of the line segment
 
-   make "newApeture 40 * :centerDistance / :Width / :n
-   if :newApeture < .5 [make "newApeture .5]
-   if NOT EQUALP :newApeture :apeture [~
-     make "scaleFactor :newApeture / :apeture
-     ;make "apeture :newApeture
+; the scale factor of the aperture shall be the ((((centerDistance  divided by
+; (Width/2)) to the power of the exponent)) *  EdgeScaleUp)  limited
+; to be at least one.
+    make "scaleFactor (power(:centerDistance/(:Width/2)):exponent)*:EdgeScaleUp
+    if :scaleFactor < 1 [make :scaleFactor 1]
      type [%LS]
-     type power :scaleFactor 2
-     print [*%]]
+     type  :scaleFactor
+     print [*%]
+
    type [X]
    type int ((1000000 * (:user_center + item 1 :CurrentPosition)) + 0.5)
    type [Y]
