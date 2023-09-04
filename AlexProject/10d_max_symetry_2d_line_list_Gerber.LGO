@@ -3,7 +3,7 @@ make "Width 914
 for [n 2 10 2][~
       make "odd :n - (2 * (int (:n / 2)))
       make "s (:Width * PI) / (2 * :n)
-      make "apeture (1 / (2 * :n))
+      make "apeture (10 / (2 * :n))
       show :s
       show :n
       make "p :n
@@ -91,15 +91,24 @@ while [ not :ll = [] ] [~
  if :itskip = 0 [~
    make "X2 item 1 :CurrentPosition
    make "Y2 item 2 :CurrentPosition
-   make "centerDistance (abs(((:X2-:X1)*(:Y1))-((:X1*(:Y2-:Y1)))))/(sqrt(((:X2-:X1)*(:X2-:X1))+((:Y2-:Y1)*(:Y2-:Y1))))
-   make "newApeture :centerDistance / :Width
-   if :newApeture = 0 [make "newApeture (1 / (2 * :n))]
-   if :newApeture < (1 / (2 * :n)) [make "newApeture (1 / (2 * :n))]
+
+   make "distance0 (abs(((:X2-:X1)*(:Y1))-((:X1*(:Y2-:Y1)))))/(sqrt(((:X2-:X1)*(:X2-:X1))+((:Y2-:Y1)*(:Y2-:Y1))))
+   make "distance1 SQRT(:X1*:X1 + :Y1*:Y1)
+   make "distance2 SQRT(:X2*:X2 + :Y2*:Y2)
+   make "min12 :distance1
+   if :distance2 < :distance1 [~
+    make "min12 :distance2]
+    make "centerDistance :distance0
+    if :min12 > :distance0 [~
+     make "centerDistance :min12] ; which gives the actual distance from the center to the closest point of the line segment
+
+   make "newApeture 40 * :centerDistance / :Width / :n
+   if :newApeture < .5 [make "newApeture .5]
    if NOT EQUALP :newApeture :apeture [~
      make "scaleFactor :newApeture / :apeture
-     make "apeture :newApeture
+     ;make "apeture :newApeture
      type [%LS]
-     type :scaleFactor
+     type power :scaleFactor 2
      print [*%]]
    type [X]
    type int ((1000000 * (:user_center + item 1 :CurrentPosition)) + 0.5)
