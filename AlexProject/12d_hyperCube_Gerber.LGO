@@ -37,7 +37,7 @@ make "fname COMBINE  :fname ".GBR
 (openwrite :fname "True)
 setwrite :fname
 print [%MOMM*%]
-print [%FSLAX26Y26*%]
+print [%FSLAX36Y36*%]
 print [%LPD*%]
 type  [%ADD10C,]
 type  :apeture
