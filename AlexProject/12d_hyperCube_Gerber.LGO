@@ -3,9 +3,9 @@ make "Width 914.4
 for [n 2 12 1][~
       make "odd :n - (2 * (int (:n / 2)))
       make "s (:Width * PI) / (2 * :n)
-      make "apeture (10 / (2 * :n))
-      make "exponent 6
-      make "EdgeScaleUp 50
+      make "apeture (6 / (3 * :n))
+      make "exponent (:n+2) / 1.2
+      make "EdgeScaleUp 400 / :n
       show :s
       show :n
       make "n :n + :odd
