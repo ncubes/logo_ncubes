@@ -1,14 +1,17 @@
 to aaa
-make "append "False
-make "n 6
-make "odd 0
-make "s 2048 ; 16.5 x 16.5 art thru bleed zone
-make "marginPixels 175 ; 350 dpi export with 1/4 bleed 1/4 trim
-show :s
-show :n
-make "p :n
-ncube :n
-design :n :p :s 
+
+make "PixelsPerInch 350
+make "Width :PixelsPerInch * 36 ; 36 inches
+
+for [n 2 12 1][~
+    make "odd MODULO :n 2
+    make "s (:Width * PI) / (2 * :n)
+    make "marginPixels 175 ; 350 dpi export with 1/4 bleed 1/4 trim
+    make "n :n + :odd
+    make "p :n
+    ncube :n
+    design :n :p :s ]
+bye
 end
 
 to design :n :p :s
@@ -35,7 +38,8 @@ print :CanvasPixels
 end
 
 to draw
-make "fname "TheCubeUni.svg
+make "fname COMBINE "TheCube (:n - :odd)
+make "fname COMBINE  :fname ".svg
 (openwrite :fname "True)
 setwrite :fname
 print [<?xml version="1.0" standalone="no"?>]

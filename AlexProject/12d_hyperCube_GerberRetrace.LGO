@@ -13,7 +13,7 @@ bye
 end
 
 to design :n :p :s
-make "theta 180/(:n - :odd)
+make "theta 330/(:n - :odd)
 genbasis :n :s   
 make "user_center :Width  / 2.0
 draw
