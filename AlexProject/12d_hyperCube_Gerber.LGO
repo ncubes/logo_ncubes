@@ -1,6 +1,6 @@
 to aaa
 make "Width 914.4
-for [n 2 12 1][~
+for [n 4 10 2][~
       make "odd :n - (2 * (int (:n / 2)))
       make "s (:Width * PI) / (2 * :n)
       make "apeture (6 / (3 * :n))

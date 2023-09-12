@@ -3,15 +3,15 @@ to aaa
 make "PixelsPerInch 350
 make "Width :PixelsPerInch * 36 ; 36 inches
 
-for [n 2 12 1][~
+for [n 2 10 1][~
     make "odd MODULO :n 2
     make "s (:Width * PI) / (2 * :n)
-    make "marginPixels 175 ; 350 dpi export with 1/4 bleed 1/4 trim
+    make "marginPixels 175
     make "n :n + :odd
     make "p :n
     ncube :n
     design :n :p :s ]
-bye
+;bye
 end
 
 to design :n :p :s
