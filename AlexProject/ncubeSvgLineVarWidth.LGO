@@ -11,7 +11,7 @@ for [n 2 10 1][~
     make "p :n
     ncube :n
     design :n :p :s ]
-;bye
+bye
 end
 
 to design :n :p :s
@@ -49,48 +49,49 @@ type [" height="]
 type :CanvasPixels
 print [" version="1.1" xmlns="http://www.w3.org/2000/svg">]
 
-print [  <circle]
-     type [style="opacity:0.634615]
-     type CHAR 59
-     type [fill:#00ff00]
-     type CHAR 59
-     type [fill-opacity:1]
-     type CHAR 59
-     type [fill-rule:evenodd]
-     type CHAR 59
-     type [stroke:#005a65]
-     type CHAR 59
-     type [stroke-width:0]
-     type CHAR 59
-     type [stroke-linecap:round]
-     print CHAR 59 ; semicolon
-     
-     
-     type [stroke-linejoin:round]
-     type CHAR 59
-     type [stroke-miterlimit:4]
-     type CHAR 59
-     type [stroke-dasharray:none]
-     type CHAR 59
-     print [paint-order:fill markers stroke"]
+;print [  <circle]
+;     type [style="opacity:0.634615]
+;     type CHAR 59
+;     type [fill:#00ff00]
+;     type CHAR 59
+;     type [fill-opacity:1]
+;     type CHAR 59
+;     type [fill-rule:evenodd]
+;     type CHAR 59
+;     type [stroke:#005a65]
+;     type CHAR 59
+;     type [stroke-width:0]
+;     type CHAR 59
+;     type [stroke-linecap:round]
+;     print CHAR 59 ; semicolon
+;     
+;     
+;     type [stroke-linejoin:round]
+;     type CHAR 59
+;     type [stroke-miterlimit:4]
+;     type CHAR 59
+;     type [stroke-dasharray:none]
+;     type CHAR 59
+;     print [paint-order:fill markers stroke"]
+;
+;
+;
+;print [     id="path2412"]
+;
+;type  [     cx="]
+;type :user_center
+;print ["]
+;
+;type  [     cy="]
+;type :user_center
+;print ["]
+;
+;type  [     r="]
+;type :user_center
+;print ["]
+;
+;print [/>] ; end circle start cube on top of solid circle
 
-
-
-print [     id="path2412"]
-
-type  [     cx="]
-type :user_center
-print ["]
-
-type  [     cy="]
-type :user_center
-print ["]
-
-type  [     r="]
-type :user_center
-print ["]
-
-print [/>] ; end circle start cube on top of solid circle
 
 make "CurrentPosition array 2   
 for [i 1 2 1] [  setitem :i :CurrentPosition 0]
@@ -102,11 +103,12 @@ for [i 1 2 1] [~
   make "temp :temp + mditem :index :basis ]
  setitem :i :CurrentPosition (- :temp / 2) ]
 
-print [  <polyline points="]
-(print (:user_center + item 1 :CurrentPosition)(:user_center + item 2 :CurrentPosition))
+
 make "ll :llist
 
 while [ not :ll = [] ] [~
+ make "PriorPosition1 item 1 :CurrentPosition
+ make "PriorPosition2 item 2 :CurrentPosition
  make "dimension dequeue "ll
  make "direction sign :dimension
  make "dimension abs :dimension
@@ -118,21 +120,40 @@ while [ not :ll = [] ] [~
   if not equalp :delta 0 [make "itskip 0]
   setitem  :i :CurrentPosition (:Current + ( :direction * :delta )) ]
  if :itskip = 0 [~
-   (print(:user_center + item 1 :CurrentPosition)( :user_center + item 2 :CurrentPosition))]
-]
 
-print ["] ; end polyline points. polyline parameters follow:
+  make "X1 :PriorPosition1
+  make "Y1 :PriorPosition2
+  make "X2 item 1 :CurrentPosition
+  make "Y2 item 2 :CurrentPosition
 
-print [    stroke="green"]      ; customer likes green
-print [    id="polyline2"]
-type [    style="fill:#ff0000] ; color
-type CHAR 59
-type [fill-opacity:1]          ; no mixing
-type CHAR 59
-print [fill-rule:evenodd"]      ; makes for more complex design
+  if 0 = ((:X2-:X1)*(:X2-:X1))+((:Y2-:Y1)*(:Y2-:Y1)) [~
+    make "centerDistance 0]
+  
+  if not equalp 0 ((:X2-:X1)*(:X2-:X1))+((:Y2-:Y1)*(:Y2-:Y1)) [~
 
-print [/>] ; end polyline
+    make "distance0 (abs(((:X2-:X1)*(:Y1))-((:X1*(:Y2-:Y1)))))/(sqrt(((:X2-:X1)*(:X2-:X1))+((:Y2-:Y1)*(:Y2-:Y1))))
+    make "distance1 SQRT(:X1*:X1 + :Y1*:Y1)
+    make "distance2 SQRT(:X2*:X2 + :Y2*:Y2)
+    make "min12 :distance1
+    if :distance2 < :distance1 [~
+     make "min12 :distance2]
+     make "centerDistance :distance0
+     if :min12 > :distance0 [~
+      make "centerDistance :min12]] ; which gives the actual distance from the center to the closest point of the line segment
 
+  make "StrokeWidth ((11 - :n) * (11 - :n) * (11 - :n) * 2) + ( :centerDistance / 250 )   
+
+  type [<line x1="]
+  type :user_center + :X1
+  type [" x2="]
+  type :user_center + :X2
+  type [" y1="]
+  type :user_center + :Y1
+  type [" y2="]
+  type :user_center + :Y2
+  type [" stroke="green" stroke-width="]
+  type :StrokeWidth
+  print ["/>]]]
 
 print [</svg>] ; end svg
 
