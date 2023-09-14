@@ -49,48 +49,48 @@ type [" height="]
 type :CanvasPixels
 print [" version="1.1" xmlns="http://www.w3.org/2000/svg">]
 
-;print [  <circle]
-;     type [style="opacity:0.634615]
-;     type CHAR 59
-;     type [fill:#00ff00]
-;     type CHAR 59
-;     type [fill-opacity:1]
-;     type CHAR 59
-;     type [fill-rule:evenodd]
-;     type CHAR 59
-;     type [stroke:#005a65]
-;     type CHAR 59
-;     type [stroke-width:0]
-;     type CHAR 59
-;     type [stroke-linecap:round]
-;     print CHAR 59 ; semicolon
-;     
-;     
-;     type [stroke-linejoin:round]
-;     type CHAR 59
-;     type [stroke-miterlimit:4]
-;     type CHAR 59
-;     type [stroke-dasharray:none]
-;     type CHAR 59
-;     print [paint-order:fill markers stroke"]
-;
-;
-;
-;print [     id="path2412"]
-;
-;type  [     cx="]
-;type :user_center
-;print ["]
-;
-;type  [     cy="]
-;type :user_center
-;print ["]
-;
-;type  [     r="]
-;type :user_center
-;print ["]
-;
-;print [/>] ; end circle start cube on top of solid circle
+print [  <circle]
+     type [style="opacity:0.634615]
+     type CHAR 59
+     type [fill:#a95c68]
+     type CHAR 59
+     type [fill-opacity:1]
+     type CHAR 59
+     type [fill-rule:evenodd]
+     type CHAR 59
+     type [stroke:#a95c68]
+     type CHAR 59
+     type [stroke-width:0]
+     type CHAR 59
+     type [stroke-linecap:round]
+     print CHAR 59 ; semicolon
+     
+     
+     type [stroke-linejoin:round]
+     type CHAR 59
+     type [stroke-miterlimit:4]
+     type CHAR 59
+     type [stroke-dasharray:none]
+     type CHAR 59
+     print [paint-order:fill markers stroke"]
+
+
+
+print [     id="path2412"]
+
+type  [     cx="]
+type :user_center
+print ["]
+
+type  [     cy="]
+type :user_center
+print ["]
+
+type  [     r="]
+type :user_center
+print ["]
+
+print [/>] ; end circle start cube on top of solid circle
 
 
 make "CurrentPosition array 2   
@@ -151,8 +151,11 @@ while [ not :ll = [] ] [~
   type :user_center + :Y1
   type [" y2="]
   type :user_center + :Y2
-  type [" stroke="green" stroke-width="]
-  type :StrokeWidth
+  type ["  stroke-width="]
+  type :StrokeWidth/3
+  type [" style=" stroke:#90ee90]
+  type CHAR 59
+  type [stroke-opacity:1"]
   print ["/>]]]
 
 print [</svg>] ; end svg
