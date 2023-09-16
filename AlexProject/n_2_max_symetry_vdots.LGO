@@ -139,10 +139,9 @@ while [ not :ll = [] ] [~
      make "centerDistance :distance0
      if :min12 > :distance0 [~
       make "centerDistance :min12]] ; which gives the actual distance from the center to the closest point of the line segment
-
-  make "StrokeWidth ((12 - :n) * (12 - :n) * (12 - :n) /2 ) + ( :centerDistance / 150 )  
-  if :StrokeWidth = 8 [make "StrokeWidth :StrokeWidth * .2]
-
+  make "m :n +1 - :odd
+  make "StrokeWidth 4 * (( SQRT (12 - :m) * (12 - :m) * (12 - :m) /2 ) + ( :centerDistance / 250 )  )
+   
   ;type [<line x1="]
   ;type :user_center + :X1
   ;type [" x2="]
