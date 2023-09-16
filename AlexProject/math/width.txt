@@ -1,0 +1,7 @@
+width=diameter=D
+=sqrt(n) * S
+
+so
+
+S = width/sqrt n
+

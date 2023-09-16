@@ -1,0 +1,14 @@
+Deep Pruce Color Code aka earthy pink background
+Hex #A95C68
+RGB 169, 92, 104
+CMYK 0, 46, 38, 34
+
+
+
+
+Light Green
+
+TYPE	VALUE
+HEX	#90EE90
+RGB	144, 238, 144
+CMYK	0.39, 0, 0.39, 0.07

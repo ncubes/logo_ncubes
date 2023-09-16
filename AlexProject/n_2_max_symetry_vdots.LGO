@@ -1,12 +1,13 @@
 to aaa
 
-make "PixelsPerInch 350
-make "Width :PixelsPerInch * 36 ; 36 inches
+make "PixelsPerInch 90
+make "Width :PixelsPerInch * 35.5 
 
 for [n 2 10 1][~
     make "odd MODULO :n 2
     make "s (:Width * PI) / (2 * :n)
-    make "marginPixels 175
+    ;make "s :Width / sqrt(:n)
+    make "marginPixels .25 * :PixelsPerInch
     make "n :n + :odd
     make "p :n
     ncube :n
@@ -17,10 +18,10 @@ end
 to design :n :p :s
 make "theta 180/(:n - :odd)
 genbasis :n :s
-make "CanvasPixels :CanvasPixels + :marginPixels
+make "CanvasPixels :CanvasPixels + ( 2 * :marginPixels )
 make "user_center :CanvasPixels  / 2.0
-type [paper square side size inches:  ]
-print :CanvasPixels / 350
+type [paper square side size inches including bleed (margin):  ]
+print :CanvasPixels / 90
 draw
 end
 
@@ -38,7 +39,7 @@ print :CanvasPixels
 end
 
 to draw
-make "fname COMBINE "TheCube (:n - :odd)
+make "fname COMBINE "n_2_max_symetry_dots (:n - :odd)
 make "fname COMBINE  :fname ".svg
 (openwrite :fname "True)
 setwrite :fname
@@ -50,22 +51,20 @@ type :CanvasPixels
 print [" version="1.1" xmlns="http://www.w3.org/2000/svg">]
 
 print [  <circle]
-     type [style="opacity:0.634615]
+     type [style="opacity:1]
      type CHAR 59
-     type [fill:#a95c68]
+     type [fill:#00ff00]
      type CHAR 59
      type [fill-opacity:1]
      type CHAR 59
      type [fill-rule:evenodd]
      type CHAR 59
-     type [stroke:#a95c68]
+     type [stroke:#00ff00]
      type CHAR 59
      type [stroke-width:0]
      type CHAR 59
      type [stroke-linecap:round]
-     print CHAR 59 ; semicolon
-     
-     
+     print CHAR 59
      type [stroke-linejoin:round]
      type CHAR 59
      type [stroke-miterlimit:4]
@@ -141,22 +140,69 @@ while [ not :ll = [] ] [~
      if :min12 > :distance0 [~
       make "centerDistance :min12]] ; which gives the actual distance from the center to the closest point of the line segment
 
-  make "StrokeWidth ((11 - :n) * (11 - :n) * (11 - :n) * 2) + ( :centerDistance / 250 )   
+  make "StrokeWidth ((12 - :n) * (12 - :n) * (12 - :n) /2 ) + ( :centerDistance / 150 )  
+  if :StrokeWidth = 8 [make "StrokeWidth :StrokeWidth * .2]
 
-  type [<line x1="]
-  type :user_center + :X1
-  type [" x2="]
-  type :user_center + :X2
-  type [" y1="]
-  type :user_center + :Y1
-  type [" y2="]
-  type :user_center + :Y2
-  type ["  stroke-width="]
-  type :StrokeWidth/3
-  type [" style=" stroke:#90ee90]
-  type CHAR 59
-  type [stroke-opacity:1"]
-  print ["/>]]]
+  ;type [<line x1="]
+  ;type :user_center + :X1
+  ;type [" x2="]
+  ;type :user_center + :X2
+  ;type [" y1="]
+  ;type :user_center + :Y1
+  ;type [" y2="]
+  ;type :user_center + :Y2
+  ;type ["  stroke-width="]
+  ;type :StrokeWidth/3
+  ;type [" style=" stroke:#90ee90]
+  ;type CHAR 59
+  ;type [stroke-linecap:round]
+  ;print CHAR 59
+  ;type [stroke-linejoin:round]
+  ;type CHAR 59
+  ;type [stroke-opacity:1"]
+  ;print ["/>]]]
+
+  print [  <circle]
+     type [style="opacity:1]
+     type CHAR 59
+     type [fill:#ff0000]
+     type CHAR 59
+     type [fill-opacity:1]
+     type CHAR 59
+     type [fill-rule:evenodd]
+     type CHAR 59
+     type [stroke:#ff0000]
+     type CHAR 59
+     type [stroke-width:0]
+     type CHAR 59
+     type [stroke-linecap:round]
+     print CHAR 59
+     type [stroke-linejoin:round]
+     type CHAR 59
+     type [stroke-miterlimit:4]
+     type CHAR 59
+     type [stroke-dasharray:none]
+     type CHAR 59
+     print [paint-order:fill markers stroke"]
+
+
+
+print [     id="path2412"]
+
+type  [     cx="]
+type :user_center + :X2
+print ["]
+
+type  [     cy="]
+type :user_center + :Y2
+print ["]
+
+type  [     r="]
+type :StrokeWidth 
+print ["]
+
+print [/>]]] ; end circle start cube on top of solid circle
+
 
 print [</svg>] ; end svg
 
