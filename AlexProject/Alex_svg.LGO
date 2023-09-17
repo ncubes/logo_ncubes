@@ -119,3 +119,5 @@ while [ not :l1=[] ] [
    queue "llist :p queue "llist :p-1 queue "llist -:p queue "llist 1-:p]
  if not  (abs :x) = (abs :p-2) [ queue "llist :x]]
 end
+
+Make "startup [aaa]
