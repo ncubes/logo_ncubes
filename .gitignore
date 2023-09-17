@@ -7,5 +7,8 @@ ncube3d/target6/frame00186.png
 *.raw
 *.wav
 *.mp3
+*.svg
+*.pdf
+*.gbr
 waves/scale.aup3
 *.aup3
