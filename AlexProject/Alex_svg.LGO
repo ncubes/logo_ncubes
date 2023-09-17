@@ -1,13 +1,17 @@
-to aaa
-
+to specify
 make "PixelsPerInch 350
 make "Width :PixelsPerInch * 35.5 
+make "marginPixels .25 * :PixelsPerInch
+make "n_min 10
+make "n_max 10
+make "squish 180
+make "stroke "90ee90
+make "stoke_width 1.5
 
-for [n 10 10 1][~
+for [n :n_min :n_max 1][~
     make "odd MODULO :n 2
     make "s (:Width * PI) / (2 * :n)
     ;make "s :Width / sqrt(:n)
-    make "marginPixels .25 * :PixelsPerInch
     make "n :n + :odd
     make "p :n
     ncube :n
@@ -16,12 +20,12 @@ bye
 end
 
 to design :n :p :s
-make "theta 180/(:n - :odd)
+make "theta :squish/(:n - :odd)
 genbasis :n :s
 make "CanvasPixels :CanvasPixels + ( 2 * :marginPixels )
 make "user_center :CanvasPixels  / 2.0
 type [paper square side size inches including bleed (margin):  ]
-print :CanvasPixels / 90
+print :CanvasPixels / :PixelsPerInch
 draw
 end
 
@@ -78,7 +82,11 @@ while [ not :ll = [] ] [~
 ]
 
 print ["]
-print [    stroke="#90ee90" fill="none" stroke-width="1.5"/>]
+type [    stroke="#]
+type :stroke 
+type  [" fill="none" stroke-width="]
+type :stoke_width
+type ["/>]
 print [</svg>]
 
 setwrite []
@@ -120,4 +128,4 @@ while [ not :l1=[] ] [
  if not  (abs :x) = (abs :p-2) [ queue "llist :x]]
 end
 
-Make "startup [aaa]
+Make "startup [specify]
