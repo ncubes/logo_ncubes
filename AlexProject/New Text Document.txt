@@ -1,0 +1,44 @@
+import math
+
+#configure your design here prior to function definition
+PixelsPerInch =350
+Width =PixelsPerInch * 35.5 
+marginPixels =.25 * PixelsPerInch
+n_min= 9
+n_max =10
+squish= 180
+stroke = '90ee90'
+stoke_width = 1.5
+theta =squish/(n - odd)
+basis = [[s * math.cos (i * theta), s * math.sin (i * theta)] for i in range(n)]
+if odd == 1:
+    basis[-1][0] = 0
+    basis[-1][1] = 0
+CanvasPixels = Width + ( 2 * marginPixels )
+user_center = CanvasPixels  / 2.0
+print ('paper square side size inches including bleed (margin): ',CanvasPixels / PixelsPerInch )
+
+
+
+
+
+
+
+# main loop
+for n in range (n_min, (n_max + 1), 1):
+    odd  = n % 2
+    s = (Width * math.pi) / (2 * n)
+    nn = n + odd
+    p = nn
+    ncube (nn)
+
+    
+def ncube (nn, llist)
+make "k :k-2             
+if :k<0 [stop]             
+make "llist [2 1 -2 -1]   
+make "d 2              
+while [ not :k<2] [ make "d :d+2 make "k :k-2 cube (llist d) ] 
+return (llist)
+
+

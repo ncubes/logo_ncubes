@@ -22,7 +22,7 @@ end
 to design :n :p :s
 make "theta :squish/(:n - :odd)
 genbasis :n :s
-make "CanvasPixels :CanvasPixels + ( 2 * :marginPixels )
+make "CanvasPixels :Width + ( 2 * :marginPixels )
 make "user_center :CanvasPixels  / 2.0
 type [paper square side size inches including bleed (margin):  ]
 print :CanvasPixels / :PixelsPerInch
