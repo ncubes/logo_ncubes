@@ -109,30 +109,29 @@ def ncube (k):
     cube (llist d) 
 
 
-def cube( l, p):
-  global llist
-  l1 = l
-  llist = []
-  llist.append p
-  while [not l1=[]] [queue "llist dequeue "l1]
-  l1 l
-  queue "llist p-1
-  while [not l1=[]] [queue "llist dequeue "l1]
-  l1 l
-  queue "llist -p
-  while [not l1=[]] [queue "llist dequeue "l1]
-  l1 l
-  queue "llist 1-p
-  queue "llist dequeue "l1
-  queue "llist p queue "llist p-1 queue "llist -p queue "llist 1-p
-  while [ not l1=[] ] [
-   x dequeue "l1 
-   if (abs x) = (abs p-2)  [                                          
-     queue "llist p queue "llist p-1 queue "llist -p queue "llist 1-p
-     queue "llist x 
-     queue "llist p queue "llist p-1 queue "llist -p queue "llist 1-p]
-   if not  (abs x) = (abs p-2) [ queue "llist x]]
-  end
+def cube( l, p)
+l1 = l
+llist = []
+queue "llist p
+while [not l1=[]] [queue "llist dequeue "l1]
+l1 l
+queue "llist p-1
+while [not l1=[]] [queue "llist dequeue "l1]
+l1 l
+queue "llist -p
+while [not l1=[]] [queue "llist dequeue "l1]
+l1 l
+queue "llist 1-p
+queue "llist dequeue "l1
+queue "llist p queue "llist p-1 queue "llist -p queue "llist 1-p
+while [ not l1=[] ] [
+ x dequeue "l1 
+ if (abs x) = (abs p-2)  [                                          
+   queue "llist p queue "llist p-1 queue "llist -p queue "llist 1-p
+   queue "llist x 
+   queue "llist p queue "llist p-1 queue "llist -p queue "llist 1-p]
+ if not  (abs x) = (abs p-2) [ queue "llist x]]
+end
 
 specify()
 for n in range (n_min, (n_max + 1), 1): #main loop
