@@ -28,7 +28,7 @@ def design (n, s):
   global odd
   theta =squish/(n - odd)
   genbasis (n, s)
-  CanvasPixels =Width + ( 2 * marginPixels )
+  CanvasPixels =Width + (2 * marginPixels)
   user_center =CanvasPixels  / 2.0
   print ("paper square side size inches including bleed (margin):", CanvasPixels / PixelsPerInch)
   draw()
@@ -76,9 +76,9 @@ def draw():
     index (list dimension i)
     delta mditem index basis
     if not equalp delta 0 [itskip 0]
-    setitem  i CurrentPosition (Current + ( direction * delta )) ]
+    setitem  i CurrentPosition (Current + (direction * delta)) ]
    if itskip = 0 [~
-     (print(user_center + item 1 CurrentPosition)( user_center + item 2 CurrentPosition))]
+     (print(user_center + item 1 CurrentPosition)(user_center + item 2 CurrentPosition))]
   ]
   
   print ["]
@@ -99,8 +99,6 @@ def draw():
 def ncube (k):
   global llist
   k = k-2             
-  if k < 0:
-    return
   llist = [2, 1, -2, -1]   
   d = 2              
   while k >= 2: 
@@ -108,31 +106,44 @@ def ncube (k):
     k k-2 
     cube (llist d) 
 
-
-def cube( l, p):
+def cube(l, p):
   global llist
+  global ll
   l1 = l
   llist = []
-  llist.append p
-  while [not l1=[]] [queue "llist dequeue "l1]
-  l1 l
-  queue "llist p-1
-  while [not l1=[]] [queue "llist dequeue "l1]
-  l1 l
-  queue "llist -p
-  while [not l1=[]] [queue "llist dequeue "l1]
-  l1 l
-  queue "llist 1-p
-  queue "llist dequeue "l1
-  queue "llist p queue "llist p-1 queue "llist -p queue "llist 1-p
-  while [ not l1=[] ] [
-   x dequeue "l1 
-   if (abs x) = (abs p-2)  [                                          
-     queue "llist p queue "llist p-1 queue "llist -p queue "llist 1-p
-     queue "llist x 
-     queue "llist p queue "llist p-1 queue "llist -p queue "llist 1-p]
-   if not  (abs x) = (abs p-2) [ queue "llist x]]
-  end
+  llist.push(p)
+  while ll:
+    llist.push(l1.pop(0))
+  l1 = l
+  llist.push(p-1)
+  while ll:
+    llist.push(l1.pop(0))
+  l1 =l
+  llist.push(-p)
+  while ll:
+    llist.push(l1.pop(0))
+  l1 =l
+  llist.push(1-p)
+  llist.push(l1.pop(0))
+  llist.push(p)
+  llist.push(p-1)
+  llist.push(-p)
+  llist.push(1-p)
+  while ll:
+   x = l1.pop(0) 
+   if (abs x) = (abs p-2):                                            
+     llist.push(p) 
+     llist.push(p-1)
+     llist.push(-p)
+     llist.push(1-p)
+     llist.push(x)
+     llist.push(p)
+     llist.push(p-1)
+     llist.push(-p)
+     llist.push(1-p)
+   if (abs x) != (abs p-2): 
+     llist.push(x)
+  
 
 specify()
 for n in range (n_min, (n_max + 1), 1): #main loop
@@ -140,5 +151,5 @@ for n in range (n_min, (n_max + 1), 1): #main loop
     s = (Width * math.pi) / (2 * n)
     n= n + odd
     p= n
-    ncube( n)
-    design (n, p, s )
+    ncube(n)
+    design (n, p, s)

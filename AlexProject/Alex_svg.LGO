@@ -6,7 +6,7 @@ make "n_min 10
 make "n_max 10
 make "squish 180
 make "stroke "90ee90
-make "stoke_width 1.5
+make "stoke_width 6
 
 for [n :n_min :n_max 1][~
     make "odd MODULO :n 2
@@ -52,7 +52,6 @@ type :CanvasPixels
 type [" height="]
 type :CanvasPixels
 print [" version="1.1" xmlns="http://www.w3.org/2000/svg">]
-
 print [  <sodipodi:namedview]
 print [     pagecolor="#ffffff"]
 print [     bordercolor="#000000"]
@@ -73,9 +72,6 @@ print [     inkscape:window-x="-8"]
 print [     inkscape:window-y="-8"]
 print [     inkscape:window-maximized="1"]
 print [     inkscape:current-layer="svg4" />]
-  
-
-
 make "CurrentPosition array 2   
 for [i 1 2 1] [  setitem :i :CurrentPosition 0]
 
@@ -121,8 +117,7 @@ end
 
 
 to ncube :k
-make "k :k-2             
-if :k<0 [stop]             
+make "k :k-2                         
 make "llist [2 1 -2 -1]   
 make "d 2              
 while [ not :k<2] [ make "d :d+2 make "k :k-2 cube :llist :d ] 
