@@ -52,6 +52,30 @@ type :CanvasPixels
 type [" height="]
 type :CanvasPixels
 print [" version="1.1" xmlns="http://www.w3.org/2000/svg">]
+
+print [  <sodipodi:namedview]
+print [     pagecolor="#ffffff"]
+print [     bordercolor="#000000"]
+print [     borderopacity="0.25"]
+print [     objecttolerance="10"]
+print [     gridtolerance="10"]
+print [     guidetolerance="10"]
+print [     inkscape:pageopacity="0"]
+print [     inkscape:pageshadow="2"]
+print [     inkscape:window-width="1920"]
+print [     inkscape:window-height="1009"]
+print [     id="namedview6"]
+print [     showgrid="false"]
+print [     inkscape:zoom="0.066825397"]
+print [     inkscape:cx="6300"]
+print [     inkscape:cy="6300"]
+print [     inkscape:window-x="-8"]
+print [     inkscape:window-y="-8"]
+print [     inkscape:window-maximized="1"]
+print [     inkscape:current-layer="svg4" />]
+  
+
+
 make "CurrentPosition array 2   
 for [i 1 2 1] [  setitem :i :CurrentPosition 0]
 
