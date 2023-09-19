@@ -1,4 +1,5 @@
 import math
+import copy
 import collections
 def specify():
   global PixelsPerInch
@@ -48,79 +49,80 @@ def ncube (k):
   d = 2              
   while k >= 2: 
     d = d+2 
-    k k-2 
-    cube (llist d) 
+    k = k-2 
+    cube (llist, d) 
 
 def cube(l, p):
   global llist
-  global ll
-  l1 = l
+  global l1
+  l1=[]
+  l1 =copy.deepcopy (l)
   llist = []
-  llist.push(p)
-  while ll:
-    llist.push(l1.pop(0))
-  l1 = l
-  llist.push(p-1)
-  while ll:
-    llist.push(l1.pop(0))
-  l1 =l
-  llist.push(-p)
-  while ll:
-    llist.push(l1.pop(0))
-  l1 =l
-  llist.push(1-p)
-  llist.push(l1.pop(0))
-  llist.push(p)
-  llist.push(p-1)
-  llist.push(-p)
-  llist.push(1-p)
-  while ll:
+  llist.append(p)
+  while l1:
+    llist.append(l1.pop(0))
+  l1 = copy.deepcopy(l)
+  llist.append(p-1)
+  while l1:
+    llist.append(l1.pop(0))
+  l1 = copy.deepcopy(l)
+  llist.append(-p)
+  while l1:
+    llist.append(l1.pop(0))
+  l1 = copy.deepcopy(l)
+  llist.append(1-p)
+  llist.append(l1.pop(0))
+  llist.append(p)
+  llist.append(p-1)
+  llist.append(-p)
+  llist.append(1-p)
+  while l1:
    x = l1.pop(0) 
-   if (abs x) = (abs p-2):                                            
-     llist.push(p) 
-     llist.push(p-1)
-     llist.push(-p)
-     llist.push(1-p)
-     llist.push(x)
-     llist.push(p)
-     llist.push(p-1)
-     llist.push(-p)
-     llist.push(1-p)
-   if (abs x) != (abs p-2): 
-     llist.push(x)
+   if abs(x) == abs(p-2):                                            
+     llist.append(p) 
+     llist.append(p-1)
+     llist.append(-p)
+     llist.append(1-p)
+     llist.append(x)
+     llist.append(p)
+     llist.append(p-1)
+     llist.append(-p)
+     llist.append(1-p)
+   if abs(x) != abs(p-2): 
+     llist.append(x)
   
 def draw():
   global n
   global CanvasPixels
   global basis
-  global ll
+  global l1
   global llist
-  fname= open("Alex3.svg", w)
-  fname.write ('<?xml version="1.0" standalone="no"?>')
-  fname.write ('<svg width="', CanvasPixels,'" height="', CanvasPixels,'" version="1.1" xmlns="http://www.w3.org/2000/svg">')
+  fname= open("Alex3py.svg", 'w')
+  fname.write ('<?xml version="1.0" standalone="no"?>\n')
+  fname.write ('<svg width="'+ str(CanvasPixels) + '" height="' + str(CanvasPixels) + '" version="1.1" xmlns="http://www.w3.org/2000/svg">\n')
   CurrentPosition = [0,0]
   for i in range (n):
     CurrentPosition[0] += basis[i][0]
     CurrentPosition[1] += basis[i][1]
   CurrentPosition[0] /= 2
   CurrentPosition[1] /= 2
-  fname.write ('<polyline points="', (user_center + CurrentPosition[0]), (user_center + CurrentPosition[1]))
-  ll = llist
-  while ll:
-   dimension = ll.pop(0)
+  fname.write ('<polyline points="\n' + str(user_center + CurrentPosition[0]) + ' ' + str(user_center + CurrentPosition[1])+ '\n' )
+  l1 = copy.deepcopy(llist)
+  while l1:
+   dimension = l1.pop(0)
    direction = math.copysign(1,dimension)
-   dimension = math.abs(dimension)
+   dimension = abs(dimension)
    itskip = 1
    for i in range(2):
     Current = CurrentPosition[i]
-    delta = basis[dimension][i]
+    delta = basis[dimension-1][i]
     if delta != 0:
      itskip = 0
     CurrentPosition[i]= (Current + (direction * delta)) 
    if itskip == 0:
-     fname.write (user_center + CurrentPosition[0], user_center + CurrentPosition[1], '"')
-     fname.write('stroke="#', stroke, '" fill="none" stroke-width="', stroke_width,'"/>')
-  fname.write ('</svg>')
+     fname.write (str(user_center + CurrentPosition[0]) + ' ' + str( user_center + CurrentPosition[1]) + '\n')
+  fname.write('"\nstroke="#' + str(stroke) + '" fill="none" stroke-width="' + str(stroke_width) + '"/>\n')
+  fname.write ('</svg>\n')
   fname.close()
 specify()
 for n in range (n_min, (n_max + 1), 1):
@@ -129,5 +131,5 @@ for n in range (n_min, (n_max + 1), 1):
     n= n + odd
     p= n
     ncube(n)
-    design (n, p, s)
+    design (n, s)
     
