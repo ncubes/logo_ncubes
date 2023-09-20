@@ -14,7 +14,7 @@ def specify():
   Width= PixelsPerInch * 35.5 
   marginPixels= .25 * PixelsPerInch
   n_min= 2
-  n_max= 16
+  n_max= 14
   squish =math.pi
   stroke= '90ee90'
   stroke_width= 100
@@ -30,9 +30,9 @@ def design (n, s):
   genbasis (n, s)
   CanvasPixels =Width + (2 * marginPixels)
   user_center =CanvasPixels  / 2.0
-  print ("paper square side size inches including bleed (margin):", CanvasPixels / PixelsPerInch)
   draw()
-
+  print (str(n-odd)+"cube paper square side size inches including bleed (margin):", CanvasPixels / PixelsPerInch)
+  
 def genbasis (n, s):
   global basis
   global theta
@@ -97,7 +97,7 @@ def draw():
   global basis
   global l1
   global llist
-  fname= open(str(n)+"cube.svg", 'w')
+  fname= open(str(n-odd)+"cube.svg", 'w')
   fname.write ('<?xml version="1.0" standalone="no"?>\n')
   fname.write ('<svg width="'+ str(CanvasPixels) + '" height="' + str(CanvasPixels) + '" version="1.1" xmlns="http://www.w3.org/2000/svg">\n')
   CurrentPosition = [0,0]
