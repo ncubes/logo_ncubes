@@ -14,7 +14,7 @@ def specify():
   Width= PixelsPerInch * 35.5 
   marginPixels= .25 * PixelsPerInch
   n_min= 2
-  n_max= 2
+  n_max= 16
   squish =math.pi
   stroke= '90ee90'
   stroke_width= 100
@@ -41,8 +41,6 @@ def genbasis (n, s):
   if odd == 1:
     basis[-1][0] = 0
     basis[-1][1] = 0
-  print (basis)
-
 
 def ncube (k):
   global llist
@@ -99,7 +97,7 @@ def draw():
   global basis
   global l1
   global llist
-  fname= open("Alex3py.svg", 'w')
+  fname= open(str(n)+"cube.svg", 'w')
   fname.write ('<?xml version="1.0" standalone="no"?>\n')
   fname.write ('<svg width="'+ str(CanvasPixels) + '" height="' + str(CanvasPixels) + '" version="1.1" xmlns="http://www.w3.org/2000/svg">\n')
   CurrentPosition = [0,0]
@@ -108,7 +106,6 @@ def draw():
     CurrentPosition[1] += basis[i][1]
   CurrentPosition[0] /= -2
   CurrentPosition[1] /= -2
-  print (str(CurrentPosition) + '\n')
   fname.write ('<polyline points="\n' + str(user_center + CurrentPosition[0]) + ' ' + str(user_center + CurrentPosition[1])+ '\n' )
   l1 = copy.deepcopy(llist)
   while l1:
