@@ -13,8 +13,8 @@ def specify():
   PixelsPerInch =350
   Width= PixelsPerInch * 35.5 
   marginPixels= .25 * PixelsPerInch
-  n_min= 4
-  n_max= 4
+  n_min= 2
+  n_max= 2
   squish =math.pi
   stroke= '90ee90'
   stroke_width= 100
@@ -26,11 +26,7 @@ def design (n, s):
   global Width
   global user_center
   global odd
-  print (n)
-  print (odd)
-  print (squish)
   theta =squish/(n - odd)
-  print (theta)
   genbasis (n, s)
   CanvasPixels =Width + (2 * marginPixels)
   user_center =CanvasPixels  / 2.0
@@ -46,6 +42,8 @@ def genbasis (n, s):
     basis[-1][0] = 0
     basis[-1][1] = 0
   print (basis)
+
+
 def ncube (k):
   global llist
   k = k-2             
@@ -108,8 +106,9 @@ def draw():
   for i in range (n):
     CurrentPosition[0] += basis[i][0]
     CurrentPosition[1] += basis[i][1]
-  CurrentPosition[0] /= 2
-  CurrentPosition[1] /= 2
+  CurrentPosition[0] /= -2
+  CurrentPosition[1] /= -2
+  print (str(CurrentPosition) + '\n')
   fname.write ('<polyline points="\n' + str(user_center + CurrentPosition[0]) + ' ' + str(user_center + CurrentPosition[1])+ '\n' )
   l1 = copy.deepcopy(llist)
   while l1:
