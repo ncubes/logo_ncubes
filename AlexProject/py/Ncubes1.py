@@ -1,23 +1,15 @@
 import math
 import copy
 import collections
-def specify():
-  global PixelsPerInch
-  global Width
-  global marginPixels
-  global n_min
-  global n_max
-  global squish
-  global stroke
-  global stroke_width
-  PixelsPerInch =350
-  Width= PixelsPerInch * 35.5 
-  marginPixels= .25 * PixelsPerInch
-  n_min= 2
-  n_max= 14
-  squish =math.pi
-  stroke= '90ee90'
-  stroke_width= 100
+
+PixelsPerInch =350
+Width= PixelsPerInch * 35.5 
+marginPixels= .25 * PixelsPerInch
+n_min= 2
+n_max= 14
+squish =math.pi
+stroke= '90ee90'
+stroke_width= 100
 
 def design (n, s):
   global theta
@@ -47,10 +39,7 @@ def ncube (k):
   while k >= 2: 
     p += 2 
     k -= 2
-
-
     l = copy.copy(llist)
-    
     l1=[]
     l1 =copy.copy (l)
     llist = []
@@ -115,7 +104,8 @@ def draw():
   fname.write('"\nstroke="#' + str(stroke) + '" fill="none" stroke-width="' + str(stroke_width) + '"/>\n')
   fname.write ('</svg>\n')
   fname.close()
-specify()
+
+
 for n in range (n_min, (n_max + 1), 1):
     odd  = n % 2
     s = (Width * math.pi) / (2 * n)
