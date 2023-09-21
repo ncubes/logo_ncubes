@@ -46,46 +46,46 @@ def ncube (k):
   p = 2              
   while k >= 2: 
     p += 2 
-    k -= 2 
-    cube (llist, p) 
+    k -= 2
 
-def cube(l, p):
-  global llist
-  l1=[]
-  l1 =copy.copy (l)
-  llist = []
-  llist.append(p)
-  while l1:
+
+    l = copy.copy(llist)
+    
+    l1=[]
+    l1 =copy.copy (l)
+    llist = []
+    llist.append(p)
+    while l1:
+      llist.append(l1.pop(0))
+    l1 = copy.copy(l)
+    llist.append(p-1)
+    while l1:
+      llist.append(l1.pop(0))
+    l1 = copy.copy(l)
+    llist.append(-p)
+    while l1:
+      llist.append(l1.pop(0))
+    l1 = copy.copy(l)
+    llist.append(1-p)
     llist.append(l1.pop(0))
-  l1 = copy.copy(l)
-  llist.append(p-1)
-  while l1:
-    llist.append(l1.pop(0))
-  l1 = copy.copy(l)
-  llist.append(-p)
-  while l1:
-    llist.append(l1.pop(0))
-  l1 = copy.copy(l)
-  llist.append(1-p)
-  llist.append(l1.pop(0))
-  llist.append(p)
-  llist.append(p-1)
-  llist.append(-p)
-  llist.append(1-p)
-  while l1:
-   x = l1.pop(0) 
-   if abs(x) == abs(p-2):                                            
-     llist.append(p) 
-     llist.append(p-1)
-     llist.append(-p)
-     llist.append(1-p)
-     llist.append(x)
-     llist.append(p)
-     llist.append(p-1)
-     llist.append(-p)
-     llist.append(1-p)
-   if abs(x) != abs(p-2): 
-     llist.append(x)
+    llist.append(p)
+    llist.append(p-1)
+    llist.append(-p)
+    llist.append(1-p)
+    while l1:
+     x = l1.pop(0) 
+     if abs(x) == abs(p-2):                                            
+       llist.append(p) 
+       llist.append(p-1)
+       llist.append(-p)
+       llist.append(1-p)
+       llist.append(x)
+       llist.append(p)
+       llist.append(p-1)
+       llist.append(-p)
+       llist.append(1-p)
+     if abs(x) != abs(p-2): 
+       llist.append(x)
   
 def draw():
   fname= open(str(n-odd)+"cube.svg", 'w')
