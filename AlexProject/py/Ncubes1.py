@@ -13,9 +13,7 @@ stroke_width= 100
 
 def design (n, s):
   global theta
-  global squish
   global CanvasPixels
-  global Width
   global user_center
   theta =squish/(n - odd)
   genbasis (n, s)
