@@ -108,7 +108,6 @@ for n in range (n_min, (n_max + 1), 1):
     odd  = n % 2
     s = (Width * math.pi) / (2 * n)
     n= n + odd
-    p= n
     ncube(n)
     design (n, s)
     
