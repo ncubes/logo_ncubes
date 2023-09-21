@@ -51,7 +51,6 @@ def ncube (k):
 
 def cube(l, p):
   global llist
-  global l1
   l1=[]
   l1 =copy.copy (l)
   llist = []
