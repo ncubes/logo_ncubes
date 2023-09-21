@@ -43,11 +43,11 @@ def ncube (k):
   global llist
   k = k-2             
   llist = [2, 1, -2, -1]   
-  d = 2              
+  p = 2              
   while k >= 2: 
-    d = d+2 
-    k = k-2 
-    cube (llist, d) 
+    p += 2 
+    k -= 2 
+    cube (llist, p) 
 
 def cube(l, p):
   global llist
