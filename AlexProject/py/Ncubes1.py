@@ -25,7 +25,6 @@ def design (n, s):
   global CanvasPixels
   global Width
   global user_center
-  global odd
   theta =squish/(n - odd)
   genbasis (n, s)
   CanvasPixels =Width + (2 * marginPixels)
@@ -35,8 +34,6 @@ def design (n, s):
   
 def genbasis (n, s):
   global basis
-  global theta
-  global CanvasPixels
   basis = [[s * math.cos (i * theta), s * math.sin (i * theta)] for i in range(n)]
   if odd == 1:
     basis[-1][0] = 0
@@ -92,11 +89,6 @@ def cube(l, p):
      llist.append(x)
   
 def draw():
-  global n
-  global CanvasPixels
-  global basis
-  global l1
-  global llist
   fname= open(str(n-odd)+"cube.svg", 'w')
   fname.write ('<?xml version="1.0" standalone="no"?>\n')
   fname.write ('<svg width="'+ str(CanvasPixels) + '" height="' + str(CanvasPixels) + '" version="1.1" xmlns="http://www.w3.org/2000/svg">\n')
