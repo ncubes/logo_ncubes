@@ -56,20 +56,20 @@ def cube(l, p):
   global llist
   global l1
   l1=[]
-  l1 =copy.deepcopy (l)
+  l1 =copy.copy (l)
   llist = []
   llist.append(p)
   while l1:
     llist.append(l1.pop(0))
-  l1 = copy.deepcopy(l)
+  l1 = copy.copy(l)
   llist.append(p-1)
   while l1:
     llist.append(l1.pop(0))
-  l1 = copy.deepcopy(l)
+  l1 = copy.copy(l)
   llist.append(-p)
   while l1:
     llist.append(l1.pop(0))
-  l1 = copy.deepcopy(l)
+  l1 = copy.copy(l)
   llist.append(1-p)
   llist.append(l1.pop(0))
   llist.append(p)
@@ -107,7 +107,7 @@ def draw():
   CurrentPosition[0] /= -2
   CurrentPosition[1] /= -2
   fname.write ('<polyline points="\n' + str(user_center + CurrentPosition[0]) + ' ' + str(user_center + CurrentPosition[1])+ '\n' )
-  l1 = copy.deepcopy(llist)
+  l1 = copy.copy(llist)
   while l1:
    dimension = l1.pop(0)
    direction = math.copysign(1,dimension)
