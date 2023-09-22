@@ -5,11 +5,13 @@ import collections
 PixelsPerInch =350
 Width= PixelsPerInch * 35.5 
 marginPixels= .25 * PixelsPerInch
-n_min= 2
+n_min= 1
 n_max= 14
 squish =math.pi
-stroke= '90ee90'
-stroke_width= 100
+stroke= '00ff00'
+stroke_width= 100.1
+style= 'fill-rule:evenodd;fill:#ff0000;fill-opacity:1'
+grow = 1.0001
 
 def design (n, s):
   global theta
@@ -75,6 +77,7 @@ def ncube (k):
        llist.append(x)
   
 def draw():
+  global basis
   fname= open(str(n-odd)+"cube.svg", 'w')
   fname.write ('<?xml version="1.0" standalone="no"?>\n')
   fname.write ('<svg width="'+ str(CanvasPixels) + '" height="' + str(CanvasPixels) + '" version="1.1" xmlns="http://www.w3.org/2000/svg">\n')
@@ -87,6 +90,8 @@ def draw():
   fname.write ('<polyline points="\n' + str(user_center + CurrentPosition[0]) + ' ' + str(user_center + CurrentPosition[1])+ '\n' )
   l1 = copy.copy(llist)
   while l1:
+   basis[0][0] = basis[0][0] * grow
+   basis[0][1] = basis[0][1] * grow
    dimension = l1.pop(0)
    direction = math.copysign(1,dimension)
    dimension = abs(dimension)
@@ -99,7 +104,7 @@ def draw():
     CurrentPosition[i]= (Current + (direction * delta)) 
    if itskip == 0:
      fname.write (str(user_center + CurrentPosition[0]) + ' ' + str( user_center + CurrentPosition[1]) + '\n')
-  fname.write('"\nstroke="#' + str(stroke) + '" fill="none" stroke-width="' + str(stroke_width) + '"/>\n')
+  fname.write('"\nstroke="#' + str(stroke) + '" fill="none" stroke-width="' + str(stroke_width) + '" style="' + style+'"/>\n')
   fname.write ('</svg>\n')
   fname.close()
 
@@ -107,6 +112,7 @@ def draw():
 for n in range (n_min, (n_max + 1), 1):
     odd  = n % 2
     s = (Width * math.pi) / (2 * n)
+    stroke_width /= 1.5
     n= n + odd
     ncube(n)
     design (n, s)
