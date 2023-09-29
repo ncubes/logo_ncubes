@@ -6,10 +6,10 @@ PixelsPerInch =100
 Width= PixelsPerInch * 35.5 
 marginPixels= .25 * PixelsPerInch
 n_min= 1
-n_max= 8
+n_max= 12
 squish =math.pi
 stroke= '00ff00'
-stroke_width= 100.1
+stroke_width= 0
 style= 'fill-rule:evenodd;fill:#ff0000;fill-opacity:1'
 grow0 = 1
 grow1 = 1
@@ -40,6 +40,7 @@ def ncube (k):
   while k >= 2: 
     p += 2 
     k -= 2
+    zl=[]
     l =copy.copy(llist)
     llist = []
     llist.append(p)
@@ -54,7 +55,7 @@ def ncube (k):
     llist.append(p-1)
     llist.append(-p)
     llist.append(1-p)
-    for x in l:
+    for x in  l:
      if abs(x) == abs(p-2):                                            
        llist.append(p) 
        llist.append(p-1)
