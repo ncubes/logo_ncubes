@@ -5,13 +5,13 @@ import collections
 PixelsPerInch =100
 Width= PixelsPerInch * 35.5 
 marginPixels= .25 * PixelsPerInch
-n_min= 4
+n_min= 1
 n_max= 8
 squish =math.pi
 stroke= '00ff00'
 stroke_width= 100.1
 style= 'fill-rule:evenodd;fill:#ff0000;fill-opacity:1'
-grow0 = 1.0004
+grow0 = 1
 grow1 = 1
 
 def design (n, s):
@@ -40,7 +40,6 @@ def ncube (k):
   while k >= 2: 
     p += 2 
     k -= 2
-    l=[]
     l =copy.copy(llist)
     llist = []
     llist.append(p)
@@ -55,8 +54,7 @@ def ncube (k):
     llist.append(p-1)
     llist.append(-p)
     llist.append(1-p)
-    while l:
-     x = l.pop(0) 
+    for x in l:
      if abs(x) == abs(p-2):                                            
        llist.append(p) 
        llist.append(p-1)
@@ -69,7 +67,6 @@ def ncube (k):
        llist.append(1-p)
      if abs(x) != abs(p-2): 
        llist.append(x)
-  print (llist)  
   
 def draw():
   global basis
