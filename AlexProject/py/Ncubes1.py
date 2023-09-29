@@ -2,16 +2,17 @@ import math
 import copy
 import collections
 
-PixelsPerInch =350
+PixelsPerInch =100
 Width= PixelsPerInch * 35.5 
 marginPixels= .25 * PixelsPerInch
-n_min= 1
-n_max= 14
+n_min= 4
+n_max= 8
 squish =math.pi
 stroke= '00ff00'
 stroke_width= 100.1
 style= 'fill-rule:evenodd;fill:#ff0000;fill-opacity:1'
-grow = 1.0001
+grow0 = 1.0004
+grow1 = 1
 
 def design (n, s):
   global theta
@@ -39,30 +40,23 @@ def ncube (k):
   while k >= 2: 
     p += 2 
     k -= 2
-    l = copy.copy(llist)
-    l1=[]
-    l1 =copy.copy (l)
+    l=[]
+    l =copy.copy(llist)
     llist = []
     llist.append(p)
-    while l1:
-      llist.append(l1.pop(0))
-    l1 = copy.copy(l)
+    [llist.append(i) for i in l]
     llist.append(p-1)
-    while l1:
-      llist.append(l1.pop(0))
-    l1 = copy.copy(l)
+    [llist.append(i) for i in l]
     llist.append(-p)
-    while l1:
-      llist.append(l1.pop(0))
-    l1 = copy.copy(l)
+    [llist.append(i) for i in l]
     llist.append(1-p)
-    llist.append(l1.pop(0))
+    llist.append(l.pop(0))
     llist.append(p)
     llist.append(p-1)
     llist.append(-p)
     llist.append(1-p)
-    while l1:
-     x = l1.pop(0) 
+    while l:
+     x = l.pop(0) 
      if abs(x) == abs(p-2):                                            
        llist.append(p) 
        llist.append(p-1)
@@ -75,6 +69,7 @@ def ncube (k):
        llist.append(1-p)
      if abs(x) != abs(p-2): 
        llist.append(x)
+  print (llist)  
   
 def draw():
   global basis
@@ -90,8 +85,8 @@ def draw():
   fname.write ('<polyline points="\n' + str(user_center + CurrentPosition[0]) + ' ' + str(user_center + CurrentPosition[1])+ '\n' )
   l1 = copy.copy(llist)
   while l1:
-   basis[0][0] = basis[0][0] * grow
-   basis[0][1] = basis[0][1] * grow
+   basis[0][0] = basis[0][0] * grow0
+   basis[0][1] = basis[0][1] * grow1
    dimension = l1.pop(0)
    direction = math.copysign(1,dimension)
    dimension = abs(dimension)
