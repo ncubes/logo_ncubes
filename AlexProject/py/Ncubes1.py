@@ -37,35 +37,28 @@ def ncube (k):
   k = k-2             
   llist = [2, 1, -2, -1]   
   p = 2              
-  while k >= 2: 
-    p += 2 ;k -= 2
-    l =copy.copy(llist)
-    llist = []
-    llist.append(p)
-    [llist.append(i) for i in l]
-    llist.append(p-1)
-    [llist.append(i) for i in l]
-    llist.append(-p)
-    [llist.append(i) for i in l]
+  while k >= 2:
+      
+    p += 2;k -= 2;l =copy.copy(llist);llist = []
+    llist.append(p  )  ;  [llist.append(i) for i in l]
+    llist.append(p-1)  ;  [llist.append(i) for i in l]
+    llist.append(-p )  ;  [llist.append(i) for i in l]
     llist.append(1-p)
+    
     llist.append(l.pop(0))
-    llist.append(p)
-    llist.append(p-1)
-    llist.append(-p)
-    llist.append(1-p)
+    llist.append(p);llist.append(p-1);llist.append(-p);llist.append(1-p)
+    
     for x in  l:
+        
      if abs(x) == abs(p-2):                                            
-       llist.append(p) 
-       llist.append(p-1)
-       llist.append(-p)
-       llist.append(1-p)
+       llist.append(p);llist.append(p-1);llist.append(-p);llist.append(1-p)
        llist.append(x)
-       llist.append(p)
-       llist.append(p-1)
-       llist.append(-p)
-       llist.append(1-p)
+       llist.append(p);llist.append(p-1);llist.append(-p);llist.append(1-p)
+       
      if abs(x) != abs(p-2): 
        llist.append(x)
+       
+  print (len(llist))
   
 def draw():
   global basis
