@@ -38,9 +38,7 @@ def ncube (k):
   llist = [2, 1, -2, -1]   
   p = 2              
   while k >= 2: 
-    p += 2 
-    k -= 2
-    zl=[]
+    p += 2 ;k -= 2
     l =copy.copy(llist)
     llist = []
     llist.append(p)
