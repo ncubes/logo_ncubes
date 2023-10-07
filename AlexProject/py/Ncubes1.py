@@ -1,6 +1,7 @@
 import math
 import copy
-import collections
+import subprocess
+
 
 PixelsPerInch =100
 Width= PixelsPerInch * 35.5 
@@ -91,7 +92,7 @@ def draw():
   fname.write('"\nstroke="#' + str(stroke) + '" fill="none" stroke-width="' + str(stroke_width) + '" style="' + style+'"/>\n')
   fname.write ('</svg>\n')
   fname.close()
-
+  subprocess.run(r"C:\Program Files\Inkscape\bin\inkscape.exe"+' --export-type="png" ' +str(n-odd)+"cube.svg")
 
 for n in range (n_min, (n_max + 1), 1):
     odd  = n % 2
