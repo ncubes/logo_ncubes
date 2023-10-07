@@ -93,11 +93,11 @@ def draw():
   fname.write ('</svg>\n')
   fname.close()
   subprocess.run(r"C:\Program Files\Inkscape\bin\inkscape.exe"+' --export-type="png" ' +str(n-odd)+"cube.svg")
-
+  subprocess.Popen("mspaint "+str(n-odd)+"cube.png")
 for n in range (n_min, (n_max + 1), 1):
     odd  = n % 2
     s = (Width * math.pi) / (2 * n)
-    stroke_width /= 1.5
+    stroke_width = odd
     n= n + odd
     ncube(n)
     design (n, s)
