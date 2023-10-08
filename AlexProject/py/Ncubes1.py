@@ -1,19 +1,16 @@
 import math
 import subprocess
-
-
 PixelsPerInch =100
 Width= PixelsPerInch * 35.5 
 marginPixels= .25 * PixelsPerInch
-n_min= 4
-n_max= 4
+n_min= 1
+n_max= 12
 squish =math.pi
 stroke= '00ff00'
 stroke_width= 0
 style= 'fill-rule:evenodd;fill:#ff0000;fill-opacity:1'
 grow0 = 1
 grow1 = 1
-
 def design (n, s):
   global theta
   global CanvasPixels
@@ -24,35 +21,30 @@ def design (n, s):
   user_center =CanvasPixels  / 2.0
   draw()
   print (str(n-odd)+"cube paper square side size inches including bleed (margin):", CanvasPixels / PixelsPerInch)
-  
 def genbasis (n, s):
   global basis
   basis = [[s * math.cos (i * theta), s * math.sin (i * theta)] for i in range(n)]
   if odd == 1:
     basis[-1][0] = 0
     basis[-1][1] = 0
-
 def ncube (k):
   global llist
   k = k-2             
-  llist = [1,2,-1,-2]   # the seed or "previous hypercube"
-  p = 2                    # dimension two, soon to be 4,6,8,10,...
+  llist = [1,2,-1,-2]   
+  p = 2                   
   while k >= 2:
-    hc = len(llist) # previous hyper cube is the first portion of the list
+    hc = len(llist) 
     p += 2;k -= 2;
-    llist.append(p  )  ;  [llist.append(llist[i]) for i in range (hc)]
     llist.append(p-1)  ;  [llist.append(llist[i]) for i in range (hc)]
-    llist.append(-p )  ;                                              
+    llist.append(p  )  ;  [llist.append(llist[i]) for i in range (hc)]
+    llist.append(1-p)  ;                                              
     for l in range (hc-1):                    
       x = (llist[l])                                              
       llist.append(x)
       if (abs(x) == abs(p-2)) or (abs(x) == abs(p-3)) :                                            
-        llist.append(1-p);llist.append(p);llist.append(p-1);llist.append(-p)
+        llist.append(-p);llist.append(p-1);llist.append(p);llist.append(1-p)
     llist.append(llist[hc-1])
-    llist.append(1-p)
-  print (len(llist))
-  print (llist)
-  
+    llist.append(-p)
 def draw():
   global basis
   fname= open(str(n-odd)+"cube.svg", 'w')
@@ -84,7 +76,7 @@ def draw():
   fname.write ('</svg>\n')
   fname.close()
   subprocess.run(r"C:\Program Files\Inkscape\bin\inkscape.exe"+' --export-type="png" ' +str(n-odd)+"cube.svg")
-  #subprocess.Popen("mspaint "+str(n-odd)+"cube.png")
+  subprocess.run("mspaint "+str(n-odd)+"cube.png")
 for n in range (n_min, (n_max + 1), 1):
     odd  = n % 2
     s = (Width * math.pi) / (2 * n)
