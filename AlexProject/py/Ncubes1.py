@@ -1,13 +1,12 @@
 import math
-import copy
 import subprocess
 
 
 PixelsPerInch =100
 Width= PixelsPerInch * 35.5 
 marginPixels= .25 * PixelsPerInch
-n_min= 1
-n_max= 12
+n_min= 4
+n_max= 4
 squish =math.pi
 stroke= '00ff00'
 stroke_width= 0
@@ -36,30 +35,23 @@ def genbasis (n, s):
 def ncube (k):
   global llist
   k = k-2             
-  llist = [2, 1, -2, -1]   
-  p = 2              
+  llist = [1,2,-1,-2]   # the seed or "previous hypercube"
+  p = 2                    # dimension two, soon to be 4,6,8,10,...
   while k >= 2:
-      
-    p += 2;k -= 2;l =copy.copy(llist);llist = []
-    llist.append(p  )  ;  [llist.append(i) for i in l]
-    llist.append(p-1)  ;  [llist.append(i) for i in l]
-    llist.append(-p )  ;  [llist.append(i) for i in l]
+    hc = len(llist) # previous hyper cube is the first portion of the list
+    p += 2;k -= 2;
+    llist.append(p  )  ;  [llist.append(llist[i]) for i in range (hc)]
+    llist.append(p-1)  ;  [llist.append(llist[i]) for i in range (hc)]
+    llist.append(-p )  ;                                              
+    for l in range (hc-1):                    
+      x = (llist[l])                                              
+      llist.append(x)
+      if (abs(x) == abs(p-2)) or (abs(x) == abs(p-3)) :                                            
+        llist.append(1-p);llist.append(p);llist.append(p-1);llist.append(-p)
+    llist.append(llist[hc-1])
     llist.append(1-p)
-    
-    llist.append(l.pop(0))
-    llist.append(p);llist.append(p-1);llist.append(-p);llist.append(1-p)
-    
-    for x in  l:
-        
-     if abs(x) == abs(p-2):                                            
-       llist.append(p);llist.append(p-1);llist.append(-p);llist.append(1-p)
-       llist.append(x)
-       llist.append(p);llist.append(p-1);llist.append(-p);llist.append(1-p)
-       
-     if abs(x) != abs(p-2): 
-       llist.append(x)
-       
   print (len(llist))
+  print (llist)
   
 def draw():
   global basis
@@ -73,11 +65,10 @@ def draw():
   CurrentPosition[0] /= -2
   CurrentPosition[1] /= -2
   fname.write ('<polyline points="\n' + str(user_center + CurrentPosition[0]) + ' ' + str(user_center + CurrentPosition[1])+ '\n' )
-  l1 = copy.copy(llist)
-  while l1:
+  for k in range (len(llist)):
    basis[0][0] = basis[0][0] * grow0
    basis[0][1] = basis[0][1] * grow1
-   dimension = l1.pop(0)
+   dimension = llist[k]
    direction = math.copysign(1,dimension)
    dimension = abs(dimension)
    itskip = 1
@@ -93,7 +84,7 @@ def draw():
   fname.write ('</svg>\n')
   fname.close()
   subprocess.run(r"C:\Program Files\Inkscape\bin\inkscape.exe"+' --export-type="png" ' +str(n-odd)+"cube.svg")
-  subprocess.Popen("mspaint "+str(n-odd)+"cube.png")
+  #subprocess.Popen("mspaint "+str(n-odd)+"cube.png")
 for n in range (n_min, (n_max + 1), 1):
     odd  = n % 2
     s = (Width * math.pi) / (2 * n)
