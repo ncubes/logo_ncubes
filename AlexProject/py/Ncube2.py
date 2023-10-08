@@ -3,8 +3,8 @@ import subprocess
 PixelsPerInch =100
 Width= PixelsPerInch * 35.5 
 marginPixels= .25 * PixelsPerInch
-n_min= 1
-n_max= 12
+n_min= 4
+n_max= 6
 squish =math.pi
 stroke= '00ff00'
 stroke_width= 0
@@ -19,7 +19,6 @@ def design (n, s):
   genbasis (n, s)
   CanvasPixels =Width + (2 * marginPixels)
   user_center =CanvasPixels  / 2.0
-  draw()
   print (str(n-odd)+"cube paper square side size inches including bleed (margin):", CanvasPixels / PixelsPerInch)
 def genbasis (n, s):
   global basis
@@ -28,17 +27,24 @@ def genbasis (n, s):
     basis[-1][0] = 0
     basis[-1][1] = 0
 def ncube (k):
-  global llist;llist = [1,2,-1,-2];k -= 2;p = 2                   
+  global llist
+  k = k-2             
+  llist = [1,2,-1,-2]   
+  p = 2                   
   while k >= 2:
-    hc = len(llist);p += 2;k -= 2
+    hc = len(llist) 
+    p += 2;k -= 2;
     llist.append(p-1)  ;  [llist.append(llist[i]) for i in range (hc)]
     llist.append(p  )  ;  [llist.append(llist[i]) for i in range (hc)]
     llist.append(1-p)  ;                                              
     for l in range (hc-1):                    
-      x = (llist[l]);llist.append(x)
+      x = (llist[l])                                              
+      llist.append(x)
       if (abs(x) == abs(p-2)) or (abs(x) == abs(p-3)) :                                            
         llist.append(-p);llist.append(p-1);llist.append(p);llist.append(1-p)
-    llist.append(llist[hc-1]);llist.append(-p)
+    llist.append(llist[hc-1])
+    llist.append(-p)
+    print(llist)
 def draw():
   global basis
   fname= open(str(n-odd)+"cube.svg", 'w')
@@ -77,5 +83,6 @@ for n in range (n_min, (n_max + 1), 1):
     stroke_width = odd
     n= n + odd
     ncube(n)
-    design(n, s)
+    design (n, s)
+    draw()
     
