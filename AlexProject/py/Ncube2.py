@@ -49,7 +49,7 @@ def draw():
   global basis
   fname= open(str(n-odd)+"cube.svg", 'w')
   fname.write ('<?xml version="1.0" standalone="no"?>\n')
-  fname.write ('<svg width="'+ str(CanvasPixels) + '" height="' + str(CanvasPixels) + '" version="1.1" xmlns="http://www.w3.org/2000/svg">\n')
+  fname.write ('<svg width="'+ str(2*CanvasPixels) + '" height="' + str(2*CanvasPixels) + '" version="1.1" xmlns="http://www.w3.org/2000/svg">\n')
   CurrentPosition = [0,0]
   for i in range (n):
     CurrentPosition[0] += basis[i][0]
